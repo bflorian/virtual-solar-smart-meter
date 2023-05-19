@@ -9,7 +9,7 @@
   "description": "Creates virtual devices that integrate with SmartThings Energy",
   "singleInstance": true,
   "webhookSmartApp": {
-    "targetUrl": "https://node-st.ngrok.io"
+    "targetUrl": "{YOUR SERVER URL}"
   },
   "oauth": {
     "clientName": "Virtual Solar Smart Meter",

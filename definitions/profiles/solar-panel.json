@@ -1,0 +1,38 @@
+{
+  "name": "Solar Panel",
+  "metadata": {
+    "vid": "STES-1-PV-{YOUR_APPROVED_VID}",
+    "mnmn": "{YOUR MNMN}",
+    "ocfDeviceType": "x.com.st.d.solarPanel"
+  },
+  "preferences": [],
+  "components": [
+    {
+      "label": "main",
+      "id": "main",
+      "capabilities": [
+        {
+          "id": "powerMeter",
+          "version": 1,
+          "ephemeral": false
+        },
+        {
+          "id": "energyMeter",
+          "version": 1,
+          "ephemeral": false
+        },
+        {
+          "id": "powerConsumptionReport",
+          "version": 1,
+          "ephemeral": false
+        }
+      ],
+      "categories": [
+        {
+          "name": "SolarPanel",
+          "categoryType": "manufacturer"
+        }
+      ]
+    }
+  ]
+}

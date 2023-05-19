@@ -10,6 +10,7 @@
   "singleInstance": true,
   "lambdaSmartApp": {
     "functions": [
+      "{YOUR LAMBDA FUNCTION ARN}"
     ]
   },
   "oauth": {

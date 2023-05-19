@@ -1,20 +1,40 @@
 {
-    "name": "ST Energy Power Meter",
+    "name": "House Power Meter",
+    "metadata": {
+        "vid": "STES-1-PV-{YOUR_APPROVED_VID}",
+        "mnmn": "{YOUR MNMN}",
+        "ocfDeviceType": "x.com.st.d.energymeter"
+    },
+    "preferences": [],
     "components": [
         {
             "id": "main",
             "capabilities": [
                 {
                     "id": "powerMeter",
-                    "version": 1
+                    "version": 1,
+                    "ephemeral": false
                 },
                 {
                     "id": "energyMeter",
-                    "version": 1
+                    "version": 1,
+                    "ephemeral": false
                 },
                 {
                     "id": "powerConsumptionReport",
-                    "version": 1
+                    "version": 1,
+                    "ephemeral": false
+                },
+                {
+                    "id": "rivertalent14263.energyMeterProperties",
+                    "version": 1,
+                    "ephemeral": false
+                }
+            ],
+            "categories": [
+                {
+                    "name": "PowerMeter",
+                    "categoryType": "manufacturer"
                 }
             ]
         },
@@ -23,11 +43,19 @@
             "capabilities": [
                 {
                     "id": "energyMeter",
-                    "version": 1
+                    "version": 1,
+                    "ephemeral": false
                 },
                 {
                     "id": "powerConsumptionReport",
-                    "version": 1
+                    "version": 1,
+                    "ephemeral": false
+                }
+            ],
+            "categories": [
+                {
+                    "name": "PowerMeter",
+                    "categoryType": "manufacturer"
                 }
             ]
         },
@@ -36,11 +64,19 @@
             "capabilities": [
                 {
                     "id": "energyMeter",
-                    "version": 1
+                    "version": 1,
+                    "ephemeral": false
                 },
                 {
                     "id": "powerConsumptionReport",
-                    "version": 1
+                    "version": 1,
+                    "ephemeral": false
+                }
+            ],
+            "categories": [
+                {
+                    "name": "PowerMeter",
+                    "categoryType": "manufacturer"
                 }
             ]
         }
