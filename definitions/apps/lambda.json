@@ -1,0 +1,22 @@
+{
+  "appName": "virtual-solar-smart-meter-0001L",
+  "appType": "LAMBDA_SMART_APP",
+  "classifications": [
+    "CONNECTED_SERVICE",
+    "DEVICE"
+  ],
+  "displayName": "Virtual Solar Smart Meter",
+  "description": "Creates virtual devices that integrate with SmartThings Energy",
+  "singleInstance": true,
+  "lambdaSmartApp": {
+    "functions": [
+    ]
+  },
+  "oauth": {
+    "clientName": "Virtual Solar Smart Meter",
+    "scope": [
+      "r:devices:*",
+      "i:deviceprofiles:*"
+    ]
+  }
+}

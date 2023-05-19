@@ -1,0 +1,21 @@
+{
+  "appName": "virtual-solar-smart-meter-0001",
+  "appType": "WEBHOOK_SMART_APP",
+  "classifications": [
+    "CONNECTED_SERVICE",
+    "DEVICE"
+  ],
+  "displayName": "Virtual Solar Smart Meter (local)",
+  "description": "Creates virtual devices that integrate with SmartThings Energy",
+  "singleInstance": true,
+  "webhookSmartApp": {
+    "targetUrl": "https://node-st.ngrok.io"
+  },
+  "oauth": {
+    "clientName": "Virtual Solar Smart Meter",
+    "scope": [
+      "r:devices:*",
+      "i:deviceprofiles:*"
+    ]
+  }
+}

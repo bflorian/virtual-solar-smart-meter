@@ -1,0 +1,12 @@
+{
+	"Tap to set": "Tap to set",
+	"pages.page1.name": "Virtual Solar Smart Meter",
+	"pages.page1.sections.intro.name": "",
+	"pages.page1.settings.period.name": "Update period",
+	"pages.page1.settings.period.postMessage": "minutes",
+	"pages.page1.settings.maxHousePower.name": "Maximum house power",
+	"pages.page1.settings.maxHousePower.postMessage": "watts",
+	"pages.page1.settings.maxSolarPower.name": "Maximum solar power",
+	"pages.page1.settings.maxSolarPower.postMessage": "watts",
+	"pages.page1.settings.timeZone.name": "Time zone"
+}

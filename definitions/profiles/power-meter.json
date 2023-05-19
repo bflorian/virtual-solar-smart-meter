@@ -1,0 +1,48 @@
+{
+    "name": "ST Energy Power Meter",
+    "components": [
+        {
+            "id": "main",
+            "capabilities": [
+                {
+                    "id": "powerMeter",
+                    "version": 1
+                },
+                {
+                    "id": "energyMeter",
+                    "version": 1
+                },
+                {
+                    "id": "powerConsumptionReport",
+                    "version": 1
+                }
+            ]
+        },
+        {
+            "id": "component1",
+            "capabilities": [
+                {
+                    "id": "energyMeter",
+                    "version": 1
+                },
+                {
+                    "id": "powerConsumptionReport",
+                    "version": 1
+                }
+            ]
+        },
+        {
+            "id": "component2",
+            "capabilities": [
+                {
+                    "id": "energyMeter",
+                    "version": 1
+                },
+                {
+                    "id": "powerConsumptionReport",
+                    "version": 1
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+tag: en
+components:
+  main:
+    label: From Grid
+    description: Report energy pulled from the grid
+  component1:
+    label: To Grid
+    description: Report energy provided to the grid
+  component2:
+    label: Home Energy Consumption
+    description: Report total energy used by the home
