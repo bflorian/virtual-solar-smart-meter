@@ -1,16 +1,6 @@
 const {findTimeZone, getZonedTime} = require('timezone-support')
 
 // Solar data indexed by 15 minute local time since midnight intervals
-// const solarData0 = [
-// 	19,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-// 	0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-// 	0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-// 	0,    0,    0,    8,   72,  242,  302,  442,  768, 1066, 1494, 2079,
-// 	1222, 1171, 1257, 1574, 2085, 2494, 2615, 3357, 4514, 5200, 5539, 5598,
-// 	5918, 6011, 6494, 6838, 6902, 6856, 7038, 7071, 7037, 7143, 5776, 4133,
-// 	2596, 3222, 2106, 2294, 2209, 2099, 2412, 2644, 2061, 2044, 2064, 1919,
-// 	1514, 1505, 1160,  837,  635,  607,  444,  433,  323,  242,  124,   38
-// ];
 const solarData = [
 	0,    0,    0,    0,    0,    0,    0,    0,
 	0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
@@ -23,8 +13,16 @@ const solarData = [
 	0,    0,    0,    0,
 ];
 
+// Maximum value in the solar data
 const maximum = solarData.reduce((max, it) => {max = Math.max(max, it); return max},0)
 
+/**
+ * Calculate the solar power production for the given date and time zone.
+ * @param date - The date/time to generate the power production for.
+ * @param timeZone - The time zone of the location.
+ * @param maxPower - The maximum power production of the solar panels.
+ * @returns {number}
+ */
 module.exports.solarPower = function(date, timeZone, maxPower) {
 
 	const t = getZonedTime(date, findTimeZone(timeZone))

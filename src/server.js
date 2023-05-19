@@ -1,5 +1,5 @@
 /**
- * Express server for local testing. Not used in the deployed AWS version
+ * Express server used for web-hook apps. Not used when deployed to AWS as a Lambda function.
  */
 
 require('dotenv').config();

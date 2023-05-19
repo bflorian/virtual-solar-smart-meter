@@ -1,5 +1,11 @@
 const {findTimeZone, getZonedTime} = require('timezone-support')
 
+/**
+ * Returns a scaling factor based on the time of day
+ * @param date - The date/time to use in selecting the scaling factor.
+ * @param timeZone - The time zone of the location.
+ * @returns {number}
+ */
 function timeOfDayFactor(date, timeZone) {
 	const localTime = getZonedTime(date, findTimeZone(timeZone))
 	const hour = localTime.hours
@@ -14,6 +20,13 @@ function timeOfDayFactor(date, timeZone) {
 	}
 }
 
+/**
+ * Generate a pseudo-random value for the house power consumption based on the time of day.
+ * @param date - The date/time to generate the power consumption for.
+ * @param timeZone - The time zone of the location.
+ * @param max - The maximum power consumption of the home
+ * @returns {number}
+ */
 module.exports.housePower = function(date, timeZone, max) {
 	const min = Math.min(Math.round(max / 2), 300)
 	const power = Math.floor(Math.random() * (max - min + 1)) + min

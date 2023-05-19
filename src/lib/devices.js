@@ -2,9 +2,10 @@ const POWER_METER_PROFILE = process.env.POWER_METER_PROFILE
 const SOLAR_PANEL_PROFILE = process.env.SOLAR_PANEL_PROFILE
 
 /**
- * Returns the home power meter device
- * @param context
- * @param create
+ * Returns the house power meter device. If create is true, the device will be created if it does not exist and
+ * initialized with the default values.
+ * @param context - The SmartApp context object that encapsulates the client for calling the SmartThings API.
+ * @param create - If true, create the device if it does not exist.
  * @returns {Promise<Device>}
  */
 module.exports.getPowerMeter = async (context, create = false) => {
@@ -21,6 +22,7 @@ module.exports.getPowerMeter = async (context, create = false) => {
 			profileId: POWER_METER_PROFILE
 		})
 
+		// Initialize the device with default values
 		await context.api.devices.createEvents(
 			device.deviceId,
 			[
@@ -113,9 +115,11 @@ module.exports.getPowerMeter = async (context, create = false) => {
 }
 
 /**
- * Returns the solar panel device
- * @param context
- * @param create
+ * /**
+ *  * Returns the solar panel device. If create is true, the device will be created if it does not exist and
+ *  * initialized with the default values.
+ *  * @param context - The SmartApp context object that encapsulates the client for calling the SmartThings API.
+ *  * @param create - If true, create the device if it does not exist.
  * @returns {Promise<Device>}
  */
 module.exports.getSolarPanel = async (context, create = false) => {
@@ -132,6 +136,7 @@ module.exports.getSolarPanel = async (context, create = false) => {
 			profileId: SOLAR_PANEL_PROFILE
 		})
 
+		// Initialize the device with default values
 		await context.api.devices.createEvents(
 			device.deviceId,
 			[

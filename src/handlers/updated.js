@@ -1,5 +1,10 @@
 const {getPowerMeter, getSolarPanel} = require('../lib/devices')
 
+/**
+ * Create the periodic and monthly schedules and initialize the power meter and solar panel devices.
+ * @param context - SmartApp context object that encapsulates the client for calling the SmartThings API.
+ * @returns {Promise<void>}
+ */
 module.exports = async (context) => {
 	const period = context.configNumberValue('period')
 	const periodic = {

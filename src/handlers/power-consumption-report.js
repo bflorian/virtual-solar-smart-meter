@@ -2,34 +2,50 @@ const {housePower} = require('../lib/house-model')
 const {solarPower} = require('../lib/solar-model')
 const {getPowerMeter, getSolarPanel} = require('../lib/devices')
 
+/**
+ * Send events for the power consumption and energy usage for the house, solar panels, and grid. The power consumption
+ * and energy usage are calculated for the period of time specified by the period configuration parameter.
+ *
+ * @param context - SmartApp context object that encapsulates the client for calling the SmartThings API.
+ * @param _ The scheduled event object (unused)
+ * @returns {Promise<void>}
+ */
 module.exports = async (context, _) => {
+	// Calculate the start and end times for the period of time to report on.
 	const periodMinutes = context.configNumberValue('period')
 	const end = new Date()
 	const start = new Date(end.getTime() - (periodMinutes * 60 * 1000))
 	const mid = new Date(Math.round((end.getTime() + start.getTime()) / 2))
+
+	// Retrieve the simulated house and solar panel average power for the period
 	const timeZone = context.configStringValue('timeZone')
 	const houseWatts = housePower(mid, timeZone, context.configNumberValue('maxHousePower'))
 	const solarWatts = solarPower(mid, timeZone, context.configNumberValue('maxSolarPower'))
 	const fromGridWatts = Math.max(houseWatts - solarWatts, 0)
 	const toGridWatts = Math.max(solarWatts - houseWatts, 0);
 
+	// Calculate the energy usage for the period
 	const houseDeltaEnergy = Math.round(houseWatts * periodMinutes / 60);
 	const solarDeltaEnergy = Math.round(solarWatts * periodMinutes / 60);
 	const fromGridDeltaEnergy = Math.round(fromGridWatts * periodMinutes / 60)
 	const toGridDeltaEnergy = Math.round(toGridWatts * periodMinutes / 60)
 
-	console.log(`${end.toISOString()} - ${context.installedAppId}: houseWatts: ${houseWatts}, solarWatts: ${solarWatts}, fromGridWatts: ${fromGridWatts}, toGridWatts: ${toGridWatts}`)
-
+	// Get the house power and solar panel devices, which are created when the app is first installed.
 	const [powerMeter, solarPanel] = await Promise.all([
 		getPowerMeter(context),
 		getSolarPanel(context)
 	])
 
+	// Get the current status of the power meter and solar panel devices. This call is necessary only in order to calculate
+	// the monthly and total all-time energy usage. It may not be necessary if that information is provided by the
+	// devices themselves.
 	const [powerMeterStatus, solarPanelStatus] = await Promise.all([
 		context.api.devices.getStatus(powerMeter.deviceId),
 		context.api.devices.getStatus(solarPanel.deviceId)
 	])
 
+	// The house power meter events, with energyMeter and powerConsumptionReport events for the house and grid, as well
+	// as the powerMeter event for the house.
 	const powerMeterEvents = [
 		{
 			component: 'main',
@@ -97,6 +113,7 @@ module.exports = async (context, _) => {
 		}
 	]
 
+	// The solar panel events, with powerMeter, energyMeter and powerConsumptionReport capabilities.
 	const solarPanelEvents = [
 		{
 			component: 'main',
@@ -127,9 +144,12 @@ module.exports = async (context, _) => {
 		}
 	]
 
+	// Send the events to SmartThings
 	await Promise.all([
 		context.api.devices.createEvents(powerMeter.deviceId, powerMeterEvents),
 		context.api.devices.createEvents(solarPanel.deviceId, solarPanelEvents)
 	])
+
+	console.log(`${end.toISOString()} - ${context.installedAppId}: houseWatts: ${houseWatts}, solarWatts: ${solarWatts}, fromGridWatts: ${fromGridWatts}, toGridWatts: ${toGridWatts}`)
 }
 

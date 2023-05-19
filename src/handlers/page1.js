@@ -1,3 +1,10 @@
+/**
+ * Renders the SmartApp configuration page.
+ * @param context - SmartApp context object that encapsulates the configuration request.
+ * @param page - Page object used for constructing the page content
+ * @param _ The configuration event object (unused)
+ * @returns {Promise<void>}
+ */
 module.exports = async (context, page, _) => {
 	page.section('intro', section => {
 		section

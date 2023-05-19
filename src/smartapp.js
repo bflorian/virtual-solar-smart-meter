@@ -7,6 +7,10 @@ const monthlyResetHandler = require('./handlers/monthly-reset')
 
 const APP_ID = process.env.APP_ID
 
+/**
+ * Instantiate and configure the SmartApp connector
+ * @type {SmartApp}
+ */
 module.exports = new SmartApp()
 	.appId(APP_ID)
 	.enableEventLogging()
