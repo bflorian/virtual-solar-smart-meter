@@ -10,14 +10,14 @@ module.exports = async (context, page, _) => {
 		section
 			.numberSetting('maxHousePower')
 			.required(true)
-			.defaultValue(3600)
+			.defaultValue(6000)
 			.required(true)
 			.postMessage()
 
 		section
 			.numberSetting('maxSolarPower')
 			.required(true)
-			.defaultValue(7500)
+			.defaultValue(8000)
 			.required(true)
 			.postMessage()
 

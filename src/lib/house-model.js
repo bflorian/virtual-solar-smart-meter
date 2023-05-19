@@ -14,9 +14,8 @@ function timeOfDayFactor(date, timeZone) {
 	}
 }
 
-module.exports.housePower = function(date, timeZone) {
-	const min = 300
-	const max = 3600
+module.exports.housePower = function(date, timeZone, max) {
+	const min = Math.min(Math.round(max / 2), 300)
 	const power = Math.floor(Math.random() * (max - min + 1)) + min
 	return Math.round(timeOfDayFactor(date, timeZone) * power)
 }

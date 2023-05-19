@@ -8,8 +8,8 @@ module.exports = async (context, _) => {
 	const start = new Date(end.getTime() - (periodMinutes * 60 * 1000))
 	const mid = new Date(Math.round((end.getTime() + start.getTime()) / 2))
 	const timeZone = context.configStringValue('timeZone')
-	const houseWatts = housePower(mid, timeZone)
-	const solarWatts = solarPower(mid, timeZone)
+	const houseWatts = housePower(mid, timeZone, context.configNumberValue('maxHousePower'))
+	const solarWatts = solarPower(mid, timeZone, context.configNumberValue('maxSolarPower'))
 	const fromGridWatts = Math.max(houseWatts - solarWatts, 0)
 	const toGridWatts = Math.max(solarWatts - houseWatts, 0);
 
@@ -17,6 +17,8 @@ module.exports = async (context, _) => {
 	const solarDeltaEnergy = Math.round(solarWatts * periodMinutes / 60);
 	const fromGridDeltaEnergy = Math.round(fromGridWatts * periodMinutes / 60)
 	const toGridDeltaEnergy = Math.round(toGridWatts * periodMinutes / 60)
+
+	console.log(`${end.toISOString()} - ${context.installedAppId}: houseWatts: ${houseWatts}, solarWatts: ${solarWatts}, fromGridWatts: ${fromGridWatts}, toGridWatts: ${toGridWatts}`)
 
 	const [powerMeter, solarPanel] = await Promise.all([
 		getPowerMeter(context),
